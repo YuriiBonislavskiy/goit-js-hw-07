@@ -39,7 +39,7 @@ function galleryClick(evt) {
         {
           onShow: (instanceOfBasicLightbox) => {
             window.addEventListener("keydown", {
-              handleEvent: onBasicLightboxEscapePress,
+              handleEvent: onEscapePress,
               instanceOfBasicLightbox, isGalleryItemClick
             });
           },
@@ -52,9 +52,8 @@ function galleryClick(evt) {
   }
 }
 
-function onBasicLightboxEscapePress(evt) {
+function onEscapePress(evt) {
   const ESC_KEY_CODE = "Escape";
-  console.log(evt.code);
   const isEscKey = evt.code === ESC_KEY_CODE;
   if (isEscKey && this.isGalleryItemClick) {
     this.instanceOfBasicLightbox.close();
