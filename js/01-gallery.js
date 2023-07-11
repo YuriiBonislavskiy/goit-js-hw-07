@@ -4,7 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 
 console.log(galleryItems);
 
-let instanceOfBasicLightbox;
+// let instanceOfBasicLightbox;
 
 const galleryItemsRetdersString = galleryItems
   .map(({ preview, original, description }) => {
@@ -30,24 +30,34 @@ function galleryClick(evt) {
   const isGalleryItemClick = clickEl.classList.contains("gallery__image");
 
   if (isGalleryItemClick) {
-    clickEl.classList.add();
+    // clickEl.classList.add();
     const largeImage = evt.target.dataset.source;
     const instanceString = `<img src="${largeImage}">`;
-    instanceOfBasicLightbox = basicLightbox.create(
-      instanceString,
-      { onShow: (instanceOfBasicLightbox) => {} },
-      { onShow: (instanceOfBasicLightbox) => {} }
-    );
-    instanceOfBasicLightbox.show();
-    window.addEventListener("keydown", onEscapePress);
+    const instanceOfBasicLightbox = basicLightbox
+      .create(
+        instanceString,
+        {
+          onShow: (instanceOfBasicLightbox) => {
+            window.addEventListener("keydown", {
+              handleEvent: onBasicLightboxEscapePress,
+              instanceOfBasicLightbox, isGalleryItemClick
+            });
+          },
+        },
+        {
+          onClose: (instanceOfBasicLightbox) => {},
+        }
+      )
+      .show();
   }
 }
 
-function onEscapePress(evt) {
+function onBasicLightboxEscapePress(evt) {
   const ESC_KEY_CODE = "Escape";
+  console.log(evt.code);
   const isEscKey = evt.code === ESC_KEY_CODE;
-  if (isEscKey) {
-    instanceOfBasicLightbox.close();
-    window.removeEventListener("keydown", onEscapePress);
+  if (isEscKey && this.isGalleryItemClick) {
+    this.instanceOfBasicLightbox.close();
+    window.removeEventListener("keydown", this);
   }
 }
