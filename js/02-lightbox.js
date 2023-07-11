@@ -21,4 +21,4 @@ const galleryItemsRetdersString = galleryItems
 const galleryList = document.querySelector(".gallery");
 galleryList.insertAdjacentHTML("beforeend", galleryItemsRetdersString);
 
-const gallery = new SimpleLightbox('.gallery__item .gallery__link', {captionsData: 'alt', captionDelay: 250,});
+const gallery = new SimpleLightbox('.gallery__item .gallery__link', {captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250,});

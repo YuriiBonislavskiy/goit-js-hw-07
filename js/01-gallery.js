@@ -33,7 +33,11 @@ function galleryClick(evt) {
     clickEl.classList.add();
     const largeImage = evt.target.dataset.source;
     const instanceString = `<img src="${largeImage}">`;
-    instanceOfBasicLightbox = basicLightbox.create(instanceString);
+    instanceOfBasicLightbox = basicLightbox.create(
+      instanceString,
+      { onShow: (instanceOfBasicLightbox) => {} },
+      { onShow: (instanceOfBasicLightbox) => {} }
+    );
     instanceOfBasicLightbox.show();
     window.addEventListener("keydown", onEscapePress);
   }
