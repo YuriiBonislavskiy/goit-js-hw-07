@@ -54,6 +54,7 @@ function galleryClick(evt) {
 
 function onEscapePress(evt) {
   const ESC_KEY_CODE = "Escape";
+  console.log(evt.code);
   const isEscKey = evt.code === ESC_KEY_CODE;
   if (isEscKey && this.isGalleryItemClick) {
     this.instanceOfBasicLightbox.close();
